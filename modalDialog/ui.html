@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+  </head>
+  <body>
+    <div>
+      
+        <table>
+          <col width="200">
+          <col width="100">
+          <tr>
+            <td>Please input name</td>
+            <td><input type="text" name="name" id="name" value="" size='30px'></td>
+          </tr>
+        </table>
+        <input type="submit" value="Submit" class="action" onclick="form_data()" >
+        <input type="button" value="Close" onclick="google.script.host.close()" />
+      
+ 
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+    </script>
+    <script>
+      function form_data(){
+        var name =  $("#name").val();
+        
+        var values = [{
+        "name":name,
+        }];
+        google.script.run.withSuccessHandler(closeIt).runsies(values);
+        
+        
+      };
+      
+      function closeIt(){
+        google.script.host.close()
+      };
+      
+    </script>
+
+  </body>
+</html>
+
+
