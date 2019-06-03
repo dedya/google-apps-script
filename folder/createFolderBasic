@@ -1,0 +1,9 @@
+/* 
+this script will create a folder named 'folderName' under the folder with id 'folderId'
+return folder object
+*/
+function createFolderBasic(folderID, folderName) {
+  var folder = DriveApp.getFolderById(folderID);
+  var newFolder = folder.createFolder(folderName);
+  return newFolder;
+};
