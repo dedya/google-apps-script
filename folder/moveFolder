@@ -1,0 +1,43 @@
+/**
+ * This script moves a specific folder into a given folder, and removes the folder
+ * from all other folders that previously contained it. For more information on
+ * interacting with files, see
+ * https://developers.google.com/apps-script/drive/file
+ */
+function moveFolderToFolder(sourceFolderId, targetFolderId) {
+  var targetFolder = DriveApp.getFolderById(targetFolderId);
+  var sourceFolder = DriveApp.getFolderById(sourceFolderId);
+  var currentFolders = sourceFolder.getParents();
+  while (currentFolders.hasNext()) {
+    var currentFolder = currentFolders.next();
+    currentFolder.removeFolder(sourceFolder);
+  }
+  targetFolder.addFolder(sourceFolder);
+};
+
+
+/**
+ * This script moves a specific folder into a given folder, and removes the folder
+ * from all other folders that previously contained it. For more information on
+ * interacting with files, see
+ * https://developers.google.com/apps-script/drive/file
+ */
+function moveNamedFolderToFolder(sourceFolderName, targetFolderName) {
+  var matchedFolders = DriveApp.getFoldersByName(sourceFolderName);
+  if (matchedFolders.hasNext()) {
+    var sourceFolder = matchedFolders.next();
+    if (matchedFolders.hasNext()) throw new Error( "Source Folder Name not unique" );
+  }
+  matchedFolders= DriveApp.getFoldersByName(targetFolderName);
+  if (matchedFolders.hasNext()) {
+    var targetFolder = matchedFolders.next();
+    if (matchedFolders.hasNext()) throw new Error( "Target Folder Name not unique" );
+  }
+
+  var currentFolders = sourceFolder.getParents();
+  while (currentFolders.hasNext()) {
+    var currentFolder = currentFolders.next();
+    currentFolder.removeFolder(sourceFolder);
+  }
+  targetFolder.addFolder(sourceFolder);
+};
