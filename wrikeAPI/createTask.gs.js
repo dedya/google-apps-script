@@ -31,7 +31,7 @@ function createTask(folderId,assignee,subject,content,dateStart=new Date(), dura
   content = content.replace(/\n/g, "<br>");
 
   var access_token = wrikeSettings.wrike.ninja_token;
-  var URL = wrikeSettings.wrike.folders_api_url+"/"+folderId+"/tasks";
+  var URL = "https://www.wrike.com/api/v4/folders/"+folderId+"/tasks";
 
   var dates = '{"start":"'+dateStartFmt+'","due":"'+dateEndFmt+'","type":"Planned"}';
 
